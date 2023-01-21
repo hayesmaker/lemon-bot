@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon index.js",
-    "lint": "eslint index.js"
+    "start": "nodemon .",
+    "lint": "eslint index.js",
+    "commands": "node ./scripts/deploy-commands.js"
   },
   "author": "",
   "license": "ISC",
