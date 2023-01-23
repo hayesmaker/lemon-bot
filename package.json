@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon .",
+    "start:dev": "nodemon .",
+    "start": "pm2 start index.js --name \"Lemon Bot\"",
+    "stop": "pm2 stop \"Lemon Bot\"",
     "lint": "eslint index.js",
     "commands": "node ./scripts/deploy-commands.js"
   },
@@ -15,7 +17,7 @@
     "axios": "^1.2.3",
     "discord.js": "^14.7.1",
     "dotenv": "^16.0.3",
-    "q-lemon": "^2.2.0"
+    "q-lemon": "^2.3.0"
   },
   "devDependencies": {
     "eslint": "^8.32.0",

@@ -8,6 +8,7 @@ const {
 } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
+
 require('dotenv').config();
 
 const TOKEN = process.env.CLIENT_TOKEN;
