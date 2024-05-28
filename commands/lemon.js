@@ -123,13 +123,16 @@ module.exports = {
                     pickedGame.metadata.developer;
                 const musician = Array.isArray(pickedGame.metadata.musician) ?
                     pickedGame.metadata.musician.join(', ') :
-                    pickedGame.metadata.musician
+                    pickedGame.metadata.musician;
                 const genre = Array.isArray(pickedGame.metadata.genres) ?
                     pickedGame.metadata.genres.join(', ') :
-                    pickedGame.metadata.genres
+                    pickedGame.metadata.genres;
                 const retail = Array.isArray(pickedGame.metadata.retail) ?
                     pickedGame.metadata.retail.join(', ') :
-                    pickedGame.metadata.retail
+                    pickedGame.metadata.retail;
+
+
+                const voterScore = pickedGame.metadata.voterScore;
 
                 const fields = [
                     {
@@ -151,6 +154,10 @@ module.exports = {
                     {
                         name: 'Genre',
                         value: genre
+                    },
+                    {
+                        name: 'Lemon Score',
+                        value: voterScore
                     },
                     {
                         name: 'Retail',
