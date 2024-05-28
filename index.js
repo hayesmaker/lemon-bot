@@ -1,3 +1,8 @@
+const lemonApi = async () => {
+  const api = await import('q-lemon/lib/lemon-api.js');
+  return api.default;
+};
+
 const {
   Client,
   GatewayIntentBits,
@@ -8,6 +13,7 @@ const {
 } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
+const {pick} = require("./lib/pick");
 
 require('dotenv').config();
 
@@ -17,7 +23,6 @@ const TOKEN = process.env.CLIENT_TOKEN;
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 client.commands = new Collection();
-
 
 const commandsPath = path.join(__dirname, 'commands');
 const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
@@ -47,3 +52,20 @@ for (const file of eventFiles) {
 }
 
 client.login(TOKEN);
+
+client.on(Events.InteractionCreate, async interaction => {
+
+  if (interaction.customId !== 'select-game') return;
+  const gameId = interaction.values[0];
+  const api = await lemonApi();
+  const embed = await pick(api, gameId);
+  if (embed) {
+    await interaction.reply({
+      ephemeral: false,
+      embeds: [embed],
+      components: []
+    });
+  }
+
+
+})

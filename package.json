@@ -15,7 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^1.2.3",
-    "discord.js": "^14.7.1",
+    "discord.js": "^14.15.2",
     "dotenv": "^16.0.3",
     "q-lemon": "^4.1.0"
   },
