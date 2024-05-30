@@ -17,7 +17,7 @@
     "axios": "^1.2.3",
     "discord.js": "^14.15.2",
     "dotenv": "^16.0.3",
-    "q-lemon": "^4.1.0"
+    "q-lemon": "^4.2.0"
   },
   "devDependencies": {
     "eslint": "^8.32.0",

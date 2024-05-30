@@ -119,7 +119,7 @@ module.exports = {
             }
 
             let shortendFields = fields.slice(0, 24);
-            
+
             const realSearchUrl = api.getSearchUrl(title);
 
             const options = shortendFields.map((field) => {
@@ -137,8 +137,13 @@ module.exports = {
             const row = new ActionRowBuilder()
               .addComponents(select);
 
+            let warning = '';
+            if (fields.length > 25) {
+                warning += ' (discord can only show the first 25)'
+            }
+
             await interaction.reply({
-                content: 'Select a game from the list',
+                content: `${fields.length} results found for ${title} - please select a game from the list below: ${warning}`,
                 components: [row],
             });
 
