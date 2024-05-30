@@ -19,6 +19,8 @@ const lemonApi = async () => {
     return api.default;
 };
 
+const botPackage = require('../package.json');
+
 
 
 
@@ -59,7 +61,7 @@ module.exports = {
         const api = await lemonApi();
         let embed;
 
-        const footerTxt = 'Search powered by q-lemon v' + qLemonPackage.version;
+        const footerTxt = `LemonBot v${botPackage.version} powered by q-lemon v${qLemonPackage.version}`;
         const defaultDesc = 'Add Lemon-Bot to your own Discord server and have fun with your own C64 game searches!'
         const defaultImg = 'https://media.discordapp.net/attachments/752892347511079043/1066357652403277934/search-img.png';
 
@@ -139,7 +141,7 @@ module.exports = {
 
             let warning = '';
             if (fields.length > 25) {
-                warning += ' (discord can only show the first 25)'
+                warning += ' (discord can only show the first 25 - use `lemon search` for more results)'
             }
 
             await interaction.reply({

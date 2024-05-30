@@ -56,6 +56,14 @@ client.login(TOKEN);
 client.on(Events.InteractionCreate, async interaction => {
 
   if (interaction.customId !== 'select-game') return;
+
+  // const receivedEmbed = message.embeds[0];
+  // const exampleEmbed = EmbedBuilder.from(receivedEmbed).setTitle('New title');
+  //
+  // channel.send({ embeds: [exampleEmbed] });
+
+  await interaction.message.edit({components: []})
+
   const gameId = interaction.values[0];
   const api = await lemonApi();
   const embed = await pick(api, gameId);
