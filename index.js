@@ -62,8 +62,6 @@ client.on(Events.InteractionCreate, async interaction => {
   //
   // channel.send({ embeds: [exampleEmbed] });
 
-  await interaction.message.edit({components: []})
-
   const gameId = interaction.values[0];
   const api = await lemonApi();
   const embed = await pick(api, gameId);
@@ -73,7 +71,8 @@ client.on(Events.InteractionCreate, async interaction => {
       embeds: [embed],
       components: []
     });
+    await interaction.message.edit({components: []});
   }
 
 
-})
+});
