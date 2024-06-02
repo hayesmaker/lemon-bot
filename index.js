@@ -56,11 +56,9 @@ client.login(TOKEN);
 client.on(Events.InteractionCreate, async interaction => {
 
   if (interaction.customId !== 'select-game') return;
-
-  const site = interaction.options.getString('site') === 'amiga' ?
-    'amiga' : 'c64';
-
-  const gameId = interaction.values[0];
+  // todo investigate retreiving site from other interaction data
+  const gameId = interaction.values[0].split(',')[0];
+  const site = interaction.values[0].split(',')[1];
   const api = await lemonApi();
   const embed = await pick(api, gameId, site);
   if (embed) {

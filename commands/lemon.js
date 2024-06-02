@@ -172,7 +172,7 @@ module.exports = {
         return new StringSelectMenuOptionBuilder()
           .setLabel(field.name)
           .setDescription(field.value)
-          .setValue(field.gameId);
+          .setValue(`${field.gameId},${site}`);
       });
 
       const select = new StringSelectMenuBuilder()
