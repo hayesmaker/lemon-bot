@@ -57,7 +57,7 @@ client.on(Events.InteractionCreate, async interaction => {
 
   if (interaction.customId !== 'select-game') return;
 
-  const site = interaction.options.getString('site').toLowerCase() === 'amiga' ?
+  const site = interaction.options.getString('site') === 'amiga' ?
     'amiga' : 'c64';
 
   const gameId = interaction.values[0];

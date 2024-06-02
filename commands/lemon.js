@@ -84,8 +84,13 @@ module.exports = {
     const defaultDesc = 'Add Lemon-Bot to your own Discord server and have fun with your own C64 game searches!';
     const defaultImg = 'https://media.discordapp.net/attachments/752892347511079043/1066357652403277934/search-img.png';
 
-    const site = interaction.options.getString('site').toLowerCase() === 'amiga' ?
+    const site = interaction.options.getString('site') === 'amiga' ?
       'amiga' : 'c64';
+
+    const lemonLogo = site === 'amiga' ?
+      'https://www.lemonamiga.com/images/navigation/signs/logo.gif' :
+      'https://www.lemon64.com/assets/themes/lemon64/logos/logo-2x.png';
+
 
     console.log('Attempting to call lemon for site:', site);
 
@@ -110,6 +115,7 @@ module.exports = {
         });
       }
 
+
       const embedTitle = searchedGames.length ?
         `Search for ${title}` :
         `No Results found for ${title}`;
@@ -124,7 +130,7 @@ module.exports = {
           url: 'https://www.npmjs.com/package/q-lemon',
         })
         .setDescription(defaultDesc)
-        .setThumbnail('https://www.lemon64.com/assets/themes/lemon64/logos/logo-2x.png')
+        .setThumbnail(lemonLogo)
         .addFields(fields)
         .addFields({ name: 'Matched Results', value: fields && fields.length.toString(), inline: false })
         .setImage(defaultImg)
