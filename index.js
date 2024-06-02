@@ -6,14 +6,12 @@ const lemonApi = async () => {
 const {
   Client,
   GatewayIntentBits,
-  REST,
-  Routes,
   Collection,
-  Events
+  Events,
 } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
-const {pick} = require("./lib/pick");
+const { pick } = require('./lib/pick');
 
 require('dotenv').config();
 
@@ -33,7 +31,8 @@ for (const file of commandFiles) {
   // Set a new item in the Collection with the key as the command name and the value as the exported module
   if ('data' in command && 'execute' in command) {
     client.commands.set(command.data.name, command);
-  } else {
+  }
+  else {
     console.log(`[WARNING] The command at ${filePath} is missing a required "data" or "execute" property.`);
   }
 }
@@ -46,7 +45,8 @@ for (const file of eventFiles) {
   const event = require(filePath);
   if (event.once) {
     client.once(event.name, (...args) => event.execute(...args));
-  } else {
+  }
+  else {
     client.on(event.name, (...args) => event.execute(...args));
   }
 }
@@ -57,21 +57,19 @@ client.on(Events.InteractionCreate, async interaction => {
 
   if (interaction.customId !== 'select-game') return;
 
-  // const receivedEmbed = message.embeds[0];
-  // const exampleEmbed = EmbedBuilder.from(receivedEmbed).setTitle('New title');
-  //
-  // channel.send({ embeds: [exampleEmbed] });
+  const site = interaction.options.getString('site').toLowerCase() === 'amiga' ?
+    'amiga' : 'c64';
 
   const gameId = interaction.values[0];
   const api = await lemonApi();
-  const embed = await pick(api, gameId);
+  const embed = await pick(api, gameId, site);
   if (embed) {
     await interaction.reply({
       ephemeral: false,
       embeds: [embed],
-      components: []
+      components: [],
     });
-    await interaction.message.edit({components: []});
+    await interaction.message.edit({ components: [] });
   }
 
 
