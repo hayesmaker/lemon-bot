@@ -90,7 +90,9 @@ module.exports = {
     const lemonLogo = site === 'amiga' ?
       'https://www.lemonamiga.com/images/navigation/signs/logo.gif' :
       'https://www.lemon64.com/assets/themes/lemon64/logos/logo-2x.png';
-
+    const iconLogo = site === 'amiga' ?
+      'https://pbs.twimg.com/profile_images/1294210281770549249/442fDaTA_400x400.png' :
+      'https://www.lemon64.com/assets/themes/lemon64/c64-flash-2x.png';
 
     console.log('Attempting to call lemon for site:', site);
 
@@ -126,7 +128,7 @@ module.exports = {
         .setURL(realSearchUrl)
         .setAuthor({
           name: 'Lemon Search',
-          iconURL: 'https://www.lemon64.com/assets/themes/lemon64/c64-flash-2x.png',
+          iconURL: iconLogo,
           url: 'https://www.npmjs.com/package/q-lemon',
         })
         .setDescription(defaultDesc)
