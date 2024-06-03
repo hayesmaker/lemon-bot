@@ -175,23 +175,29 @@ module.exports = {
           .setValue(`${field.gameId},${site}`);
       });
 
-      const select = new StringSelectMenuBuilder()
-        .setCustomId('select-game')
-        .setPlaceholder('Please Select')
-        .addOptions(options);
-
-      const row = new ActionRowBuilder()
-        .addComponents(select);
-
       let warning = '';
       if (fields.length > 25) {
         warning += ' (discord can only show the first 25 results)';
       }
 
-      await interaction.reply({
-        content: `${fields.length} results found for ${title} - please select a game from the list below: ${warning}`,
-        components: [row],
-      });
+      if (fields.length === 1) {
+        embed = await pick(api, fields[0].gameId, site);
+      }
+
+      if (fields.length > 1) {
+        const select = new StringSelectMenuBuilder()
+          .setCustomId('select-game')
+          .setPlaceholder('Please Select')
+          .addOptions(options);
+
+        const row = new ActionRowBuilder()
+          .addComponents(select);
+
+        await interaction.reply({
+          content: `${fields.length} results found for ${title} - please select a game from the list below: ${warning}`,
+          components: [row],
+        });
+      }
 
     }
     else if (interaction.options.getSubcommand() === 'pick') {
